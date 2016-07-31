@@ -24,7 +24,7 @@
     [super viewDidLoad];
     
     SocketConfig *config=[[SocketConfig alloc]init];
-    config.host=@"101.201.112.35";
+    config.host=@"192.168.1.102";
     config.port=9090;
     
     self.client=[IMClient shareInstance];

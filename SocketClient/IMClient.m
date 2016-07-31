@@ -50,7 +50,7 @@
         self.netTimer=nil;
     }
     if (!self.sendTimer) {
-        self.netTimer=[NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(sendTimerAction) userInfo:nil repeats:YES];
+        self.sendTimer=[NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(sendTimerAction) userInfo:nil repeats:YES];
     }
     if (!self.checkTimer) {
         self.checkTimer=[NSTimer scheduledTimerWithTimeInterval:13 target:self selector:@selector(checkTimerAction) userInfo:nil repeats:YES];
