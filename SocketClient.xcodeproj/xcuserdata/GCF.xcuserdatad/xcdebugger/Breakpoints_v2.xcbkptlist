@@ -314,22 +314,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AsyncSocket/AsyncSocket.m"
-            timestampString = "489470042.584255"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1494"
-            endingLineNumber = "1494"
-            landmarkName = "-connectToHost:onPort:withTimeout:error:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AsyncSocket/AsyncSocket.m"
             timestampString = "489470048.344333"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -441,8 +425,8 @@
                   symbolName = "-[AsyncSocket completeCurrentWrite]"
                   moduleName = "SocketClient"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/GCF/Desktop/SocketClient/AsyncSocket/AsyncSocket.m"
-                  timestampString = "489555555.77466"
+                  urlString = "file:///Users/gcf/Downloads/SocketClient/AsyncSocket/AsyncSocket.m"
+                  timestampString = "491642647.790465"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "4058"
@@ -456,8 +440,8 @@
                   symbolName = "-[AsyncSocket completeCurrentWrite]"
                   moduleName = "SocketClient"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/GCF/Desktop/SocketClient/AsyncSocket/AsyncSocket.m"
-                  timestampString = "489555555.774929"
+                  urlString = "file:///Users/gcf/Downloads/SocketClient/AsyncSocket/AsyncSocket.m"
+                  timestampString = "491642647.790625"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "4058"

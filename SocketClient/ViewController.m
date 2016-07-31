@@ -24,7 +24,7 @@
     [super viewDidLoad];
     
     SocketConfig *config=[[SocketConfig alloc]init];
-    config.host=@"10.10.80.94";
+    config.host=@"101.201.112.35";
     config.port=9090;
     
     self.client=[IMClient shareInstance];
@@ -36,6 +36,7 @@
         
     }];
     
+
     
 	// Do any additional setup after loading the view, typically from a nib.
 }

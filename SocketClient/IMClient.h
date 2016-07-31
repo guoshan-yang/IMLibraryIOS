@@ -27,6 +27,7 @@ typedef void(^OnMessageResponseBlock)(NSString * inPacket);
 @property(nonatomic,strong)SocketConfig *config;
 -(void)sendMsgToServer:(NSString *)msg;
 -(void)connect;
+-(void)disconnect;
 @end
 
 

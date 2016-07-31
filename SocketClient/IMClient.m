@@ -9,6 +9,10 @@
 #import "IMClient.h"
 #import "AsyncSocket.h"
 @interface IMClient()
+@property(nonatomic,strong)NSTimer *netTimer;
+@property(nonatomic,strong)NSTimer *sendTimer;
+@property(nonatomic,strong)NSTimer *checkTimer;
+@property(nonatomic,assign)NSTimeInterval lastInteval;
 @property(nonatomic,strong)ServiceStatusConnectChangedBlock serviceStatusConnectChangedBlock;
 @property(nonatomic,strong)OnMessageResponseBlock onMessageResponseBlock;
 @end
@@ -41,6 +45,17 @@
         self.connect.serviceStatus=true;
         self.serviceStatusConnectChangedBlock(1);
     }
+    if (self.netTimer) {
+        [self.netTimer invalidate];
+        self.netTimer=nil;
+    }
+    if (!self.sendTimer) {
+        self.netTimer=[NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(sendTimerAction) userInfo:nil repeats:YES];
+    }
+    if (!self.checkTimer) {
+        self.checkTimer=[NSTimer scheduledTimerWithTimeInterval:13 target:self selector:@selector(checkTimerAction) userInfo:nil repeats:YES];
+    }
+    
     [sock readDataWithTimeout:1 tag:0];
 }
 - (void)onSocket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag
@@ -56,6 +71,7 @@
         self.onMessageResponseBlock(aStr);
     }
     [aStr release];
+    self.lastInteval=[[NSDate date] timeIntervalSince1970];
     [sock readDataWithTimeout:-1 tag:0];
 }
 
@@ -78,9 +94,40 @@
         self.serviceStatusConnectChangedBlock(0);
     }
     sock = nil;
+    if (!self.netTimer) {
+        self.netTimer=[NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(netTimerAction) userInfo:nil repeats:YES];
+    }
+    if (self.sendTimer) {
+        [self.sendTimer invalidate];
+        self.sendTimer=nil;
+    }
+    if (self.checkTimer) {
+        [self.checkTimer invalidate];
+        self.checkTimer=nil;
+    }
 }
 
+- (void)netTimerAction
+{
+    [self.connect connect];
+}
+
+- (void)sendTimerAction
+{
+    [self.connect sendMsgToServer:@"Chilent-Ping"];
+}
+
+- (void)checkTimerAction
+{
+    NSTimeInterval interval=[[NSDate date]timeIntervalSinceDate:[NSDate dateWithTimeIntervalSince1970:self.lastInteval]];
+    if (interval>13) {
+        [self.connect disconnect];
+    }
+}
+
+
 @end
+
 
 
 @implementation IMConnect
@@ -95,8 +142,12 @@
     return self;
 }
 
+-(void)disconnect{
+    [self.socket disconnect];
+}
 
--(void)connect{
+-(void)connect
+{
     if (!self.serviceStatus) {
         NSError *error=nil;
         [self.socket connectToHost:self.config.host onPort:self.config.port error:&error];
@@ -112,7 +163,12 @@
         NSLog(@"连接断开了");
     }
 }
+
+
 @end
+
+
+
 
 @implementation SocketConfig
 
