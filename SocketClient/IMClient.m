@@ -67,7 +67,7 @@
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
     NSString* aStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"Hava received datas is :%@",aStr);
-    if (self.onMessageResponseBlock && aStr != nil && aStr != NULL) {
+    if (self.onMessageResponseBlock && aStr != nil && aStr != NULL && ![aStr isEqualToString:@"Service-Ping"]) {
         self.onMessageResponseBlock(aStr);
     }
     [aStr release];

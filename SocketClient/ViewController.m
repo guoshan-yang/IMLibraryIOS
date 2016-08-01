@@ -32,8 +32,8 @@
         _Status.text=[NSString stringWithFormat:@"%ld",statusCode];
         
     } onMessageResponseBlock:^(NSString *inPacket) {
-        self.ReceiveData.text=inPacket;
         
+        self.ReceiveData.text=inPacket;
     }];
     
 
